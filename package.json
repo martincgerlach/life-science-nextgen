@@ -1,0 +1,14 @@
+{
+  "name": "life-science-nextgen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev ./public",
+    "d1:migrate:local": "wrangler d1 migrations apply life-science-nextgen-signups --local",
+    "d1:migrate:remote": "wrangler d1 migrations apply life-science-nextgen-signups --remote",
+    "deploy": "wrangler pages deploy ./public"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
