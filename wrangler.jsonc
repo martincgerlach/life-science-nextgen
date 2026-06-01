@@ -1,15 +1,14 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "life-science-nextgen",
+  "account_id": "e468a0908e8a1acb075600d30a87b63e",
   "pages_build_output_dir": "./public",
   "compatibility_date": "2026-05-26",
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "life-science-nextgen-signups",
-      // Replace after running:
-      // npx wrangler d1 create life-science-nextgen-signups
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "5c9f29ec-fba5-4ea4-aa16-a0fc6f41dbb2",
       "migrations_dir": "migrations"
     }
   ]
