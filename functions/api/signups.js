@@ -20,6 +20,10 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function cleanRoleDetail(value) {
+  return String(value || "").trim().slice(0, 120);
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
 
@@ -44,6 +48,7 @@ export async function onRequest(context) {
 
   const email = String(payload.email || "").trim().toLowerCase();
   const role = String(payload.role || "").trim();
+  const roleDetail = cleanRoleDetail(payload.roleDetail);
 
   if (!isValidEmail(email)) {
     return json({ ok: false, error: "A valid email is required." }, { status: 400 });
@@ -53,15 +58,19 @@ export async function onRequest(context) {
     return json({ ok: false, error: "A valid role is required." }, { status: 400 });
   }
 
+  if (role === "Other" && roleDetail.length === 0) {
+    return json({ ok: false, error: "Role detail is required." }, { status: 400 });
+  }
+
   try {
     const insert = await env.DB.prepare(
-      "INSERT OR IGNORE INTO signups (email, role) VALUES (?, ?)",
+      "INSERT OR IGNORE INTO signups (email, role, role_detail) VALUES (?, ?, ?)",
     )
-      .bind(email, role)
+      .bind(email, role, role === "Other" ? roleDetail : null)
       .run();
 
     const signup = await env.DB.prepare(
-      "SELECT id, email, role, created_at FROM signups WHERE email = ?",
+      "SELECT id, email, role, role_detail, created_at FROM signups WHERE email = ?",
     )
       .bind(email)
       .first();
