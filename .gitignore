@@ -1,5 +1,7 @@
 node_modules/
 .wrangler/
 .playwright-cli/
+tmp/
+output/
 .DS_Store
 npm-debug.log*

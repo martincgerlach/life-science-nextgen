@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 110" role="img" aria-labelledby="title">
+  <title id="title">BioInnovation Institute placeholder</title>
+  <rect width="320" height="110" rx="10" fill="#f4f7f6"/>
+  <text x="34" y="68" fill="#101a35" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">BII</text>
+  <text x="123" y="48" fill="#4f5c5a" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">BioInnovation</text>
+  <text x="123" y="72" fill="#4f5c5a" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Institute</text>
+</svg>

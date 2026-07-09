@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 110" role="img" aria-labelledby="title">
+  <title id="title">BioMedical Design placeholder</title>
+  <rect width="320" height="110" rx="10" fill="#f4f7f6"/>
+  <text x="34" y="51" fill="#101a35" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">BioMedical</text>
+  <text x="34" y="80" fill="#101a35" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">Design</text>
+  <path d="M242 28h34v34h-34zM224 50h34v34h-34z" fill="#62bfa6" opacity=".75"/>
+</svg>

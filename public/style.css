@@ -178,8 +178,7 @@ p {
   font-size: 15px;
 }
 
-.brand-visual,
-.logo-placeholder {
+.brand-visual {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,13 +197,6 @@ p {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.logo-placeholder {
-  min-height: 110px;
-  padding: 20px;
-  text-align: center;
-  font-weight: bold;
 }
 
 .light-section {
@@ -238,11 +230,61 @@ p {
 }
 
 .partner-card {
-  padding: 14px;
+  display: flex;
+  min-height: 115px;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  padding: 18px;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
-.partner-card .logo-placeholder {
-  margin-bottom: 0;
+a.partner-card {
+  cursor: pointer;
+}
+
+a.partner-card:hover,
+a.partner-card:focus-visible {
+  border-color: var(--teal);
+  box-shadow: 0 10px 24px rgba(16, 26, 53, 0.08);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.partner-logo {
+  display: block;
+  width: 100%;
+  max-width: 175px;
+  max-height: 68px;
+  object-fit: contain;
+}
+
+.partner-card:nth-child(8) .partner-logo,
+.partner-card:nth-child(9) .partner-logo {
+  max-width: 190px;
+}
+
+.logo-invert {
+  filter: invert(1);
+}
+
+.partner-fallback {
+  display: none;
+  color: var(--text);
+  font-weight: bold;
+  text-align: center;
+}
+
+.logo-missing .partner-logo {
+  display: none;
+}
+
+.logo-missing .partner-fallback {
+  display: block;
 }
 
 .icon-box {

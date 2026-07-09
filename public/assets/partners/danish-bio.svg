@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 110" role="img" aria-labelledby="title">
+  <title id="title">Danish Bio placeholder</title>
+  <rect width="320" height="110" rx="10" fill="#f4f7f6"/>
+  <path d="M64 30c18 0 32 11 32 25S82 80 64 80 32 69 32 55s14-25 32-25Zm0 11c-11 0-20 6-20 14s9 14 20 14 20-6 20-14-9-14-20-14Z" fill="#62bfa6"/>
+  <text x="115" y="64" fill="#101a35" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Danish Bio</text>
+</svg>

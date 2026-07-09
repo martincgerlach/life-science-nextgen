@@ -5,6 +5,7 @@ var otherRoleField = document.getElementById("other-role-field");
 var roleDetailInput = document.getElementById("role-detail");
 var submitButton = document.getElementById("submit-button");
 var formMessage = document.getElementById("form-message");
+var partnerLogos = document.querySelectorAll(".partner-logo");
 
 var roles = [
   "Student",
@@ -45,6 +46,18 @@ function updateRoleDetailField() {
 
 roleSelect.addEventListener("change", updateRoleDetailField);
 updateRoleDetailField();
+
+partnerLogos.forEach(function (logo) {
+  function showFallback() {
+    logo.closest(".partner-card").classList.add("logo-missing");
+  }
+
+  logo.addEventListener("error", showFallback);
+
+  if (logo.complete && logo.naturalWidth === 0) {
+    showFallback();
+  }
+});
 
 signupForm.addEventListener("submit", async function (event) {
   event.preventDefault();
