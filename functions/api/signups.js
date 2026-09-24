@@ -24,6 +24,45 @@ function cleanRoleDetail(value) {
   return String(value || "").trim().slice(0, 120);
 }
 
+async function notifyNewSignup(env, signup) {
+  const { RESEND_API_KEY, SIGNUP_NOTIFICATION_FROM, SIGNUP_NOTIFICATION_TO } = env;
+
+  if (!RESEND_API_KEY || !SIGNUP_NOTIFICATION_FROM || !SIGNUP_NOTIFICATION_TO) {
+    console.warn("Signup notification is not configured.");
+    return;
+  }
+
+  const lines = [
+    "A new Life Science NEXTGEN signup was saved.",
+    `Email: ${signup.email}`,
+    `Role: ${signup.role}`,
+    ...(signup.role_detail ? [`Role detail: ${signup.role_detail}`] : []),
+    `Signed up: ${signup.created_at}`,
+  ];
+
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: SIGNUP_NOTIFICATION_FROM,
+        to: [SIGNUP_NOTIFICATION_TO],
+        subject: "New Life Science NEXTGEN signup",
+        text: lines.join("\n"),
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Signup notification failed.", response.status);
+    }
+  } catch (error) {
+    console.error("Signup notification failed.", error);
+  }
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
 
@@ -80,6 +119,10 @@ export async function onRequest(context) {
     }
 
     const created = Number(insert.meta?.changes || 0) > 0;
+
+    if (created) {
+      await notifyNewSignup(env, signup);
+    }
 
     return json(
       {

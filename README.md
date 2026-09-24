@@ -37,3 +37,22 @@ The sign-up form stores:
 
 Duplicate email submissions return as already registered and do not create a
 second row.
+
+## Signup email notification
+
+Each newly saved signup can send one notification through Resend. Duplicate
+submissions do not send another notification. The signup remains saved even if
+Resend is unavailable; a failed notification is logged by the Pages Function.
+
+Configure these Cloudflare Pages environment variables for the production
+deployment (and any preview environment where notifications are wanted):
+
+- `RESEND_API_KEY` — a Resend sending API key; store this as a secret.
+- `SIGNUP_NOTIFICATION_FROM` — sender address on a verified Resend domain;
+  configured in `wrangler.jsonc` as `updates@lifesciencenextgen.com`.
+- `SIGNUP_NOTIFICATION_TO` — recipient, configured in `wrangler.jsonc` as
+  `Lene@womeninlifescience.dk`.
+
+For local testing, set the same values in a gitignored `.dev.vars` file. Never
+commit the API key. If any value is missing, signups still save but no email is
+sent. Deploy the updated Pages Function after configuring the variables.
